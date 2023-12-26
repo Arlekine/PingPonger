@@ -22,13 +22,13 @@ namespace PingPonger.Gameplay
         [SerializeField] private Platform _platformPrefab;
 
         [EditorButton]
-        public GameContext GetNewGameContext()
+        public SessionContext GetNewGameContext(SessionScore score, BallsCollisionHandler collisionHandler)
         {
             var borders = new PlatfromBorders(_platfromPoint.position.y, 
                 _platfromLeftMoveBorder.position.x,
                 _platfromRightMoveBorder.position.x);
 
-            return new GameContext(_ballPrefab, _platformPrefab, borders, _outOfScreenDestractor, _ballSpawnPoint.position, _gameParent, _camera, _input);
+            return new SessionContext(_ballPrefab, _platformPrefab, borders, _outOfScreenDestractor, _ballSpawnPoint.position, _gameParent, _camera, _input, collisionHandler, score);
         }
     }
 }

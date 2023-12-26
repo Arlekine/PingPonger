@@ -27,7 +27,7 @@ namespace PingPonger.Gameplay
         [SerializeField] private AnimationCurve _maxBallsProgress;
         [SerializeField] private AnimationCurve _newBallsSpawnChancePerProgressUpdate;
 
-        private GameContext _currentContext;
+        private SessionContext _currentContext;
 
         private LinearProgressProcessor _gravityProgress;
         private LinearProgressProcessor _bouncingProgress;
@@ -37,7 +37,7 @@ namespace PingPonger.Gameplay
 
         public Action SessionFinished;
 
-        public void StartNewSession(GameContext context)
+        public void StartNewSession(SessionContext context)
         {
             _currentContext = context;
             _currentContext.BallCreated += OnBallCreated;

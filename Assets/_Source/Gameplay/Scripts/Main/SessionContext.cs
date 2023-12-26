@@ -5,7 +5,7 @@ using Object = UnityEngine.Object;
 
 namespace PingPonger.Gameplay
 {
-    public class GameContext : IDisposable
+    public class SessionContext : IDisposable
     {
         #region Data
         private Ball _ballPrefab;
@@ -18,6 +18,9 @@ namespace PingPonger.Gameplay
         private Transform _gameParent;
         private Camera _mainCamera;
         private ClickInput _input;
+
+        private BallsCollisionHandler _collisionHandler;
+        private SessionScore _sessionScore;
         #endregion
 
         #region CurrentGame
@@ -25,7 +28,10 @@ namespace PingPonger.Gameplay
         private readonly List<Ball> _currentBalls = new List<Ball>();
         #endregion
 
-        public GameContext(Ball ballPrefab, Platform platformPrefab, PlatfromBorders platfromBorders, TypedTrigger<IDestractable> outOfScreenTrigger, Vector3 ballCreationPoint, Transform gameParent, Camera mainCamera, ClickInput input)
+        public SessionContext(Ball ballPrefab, Platform platformPrefab, PlatfromBorders platfromBorders, 
+            TypedTrigger<IDestractable> outOfScreenTrigger, Vector3 ballCreationPoint, 
+            Transform gameParent, Camera mainCamera, ClickInput input,
+            BallsCollisionHandler collisionHandler, SessionScore score)
         {
             _ballPrefab = ballPrefab;
             _platformPrefab = platformPrefab;
@@ -36,6 +42,9 @@ namespace PingPonger.Gameplay
             _mainCamera = mainCamera;
             _input = input;
 
+            _collisionHandler = collisionHandler;
+            _sessionScore = score;
+
             _outOfScreenTrigger.TriggerEnter += OnSomethingDestroyed;
         }
 
@@ -45,6 +54,9 @@ namespace PingPonger.Gameplay
         public List<Ball> CurrentBalls => _currentBalls;
         public Platform CurrentPlatform => _currentPlatform;
         public TypedTrigger<IDestractable> OutOfScreenTrigger => _outOfScreenTrigger;
+
+        public BallsCollisionHandler CollisionHandler => _collisionHandler;
+        public SessionScore SessionScore => _sessionScore;
 
         public Ball CreateNewBall()
         {

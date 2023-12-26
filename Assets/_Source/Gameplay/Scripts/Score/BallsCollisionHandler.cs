@@ -6,13 +6,13 @@ namespace PingPonger.Gameplay
 {
     public class BallsCollisionHandler : IDisposable
     {
-        private GameContext _context;
+        private SessionContext _context;
         private readonly Dictionary<Ball, Ball> _doubleCollisions = new Dictionary<Ball, Ball>();
 
         public event Action<Vector3> BallCollided;
         public event Action<Vector3> TwoBallsCollided;
 
-        public BallsCollisionHandler(GameContext context)
+        public BallsCollisionHandler(SessionContext context)
         {
             _context = context;
             _context.BallCreated += OnNewBallCreated;
