@@ -5,10 +5,10 @@ using Object = UnityEngine.Object;
 
 namespace PingPonger.Gameplay
 {
-    public class SessionContext : IDisposable
+    public class SessionContext : ISessionService, IDisposable
     {
         #region Data
-        private Ball _ballPrefab;
+        private BallFactory _ballFactory;
         private Platform _platformPrefab;
         private PlatfromBorders _platfromBorders;
         private TypedTrigger<IDestractable> _outOfScreenTrigger;
@@ -18,9 +18,6 @@ namespace PingPonger.Gameplay
         private Transform _gameParent;
         private Camera _mainCamera;
         private ClickInput _input;
-
-        private BallsCollisionHandler _collisionHandler;
-        private SessionScore _sessionScore;
         #endregion
 
         #region CurrentGame
@@ -28,12 +25,11 @@ namespace PingPonger.Gameplay
         private readonly List<Ball> _currentBalls = new List<Ball>();
         #endregion
 
-        public SessionContext(Ball ballPrefab, Platform platformPrefab, PlatfromBorders platfromBorders, 
+        public SessionContext(BallFactory ballFactory, Platform platformPrefab, PlatfromBorders platfromBorders, 
             TypedTrigger<IDestractable> outOfScreenTrigger, Vector3 ballCreationPoint, 
-            Transform gameParent, Camera mainCamera, ClickInput input,
-            BallsCollisionHandler collisionHandler, SessionScore score)
+            Transform gameParent, Camera mainCamera, ClickInput input)
         {
-            _ballPrefab = ballPrefab;
+            _ballFactory = ballFactory;
             _platformPrefab = platformPrefab;
             _platfromBorders = platfromBorders;
             _outOfScreenTrigger = outOfScreenTrigger;
@@ -41,9 +37,6 @@ namespace PingPonger.Gameplay
             _gameParent = gameParent;
             _mainCamera = mainCamera;
             _input = input;
-
-            _collisionHandler = collisionHandler;
-            _sessionScore = score;
 
             _outOfScreenTrigger.TriggerEnter += OnSomethingDestroyed;
         }
@@ -55,12 +48,9 @@ namespace PingPonger.Gameplay
         public Platform CurrentPlatform => _currentPlatform;
         public TypedTrigger<IDestractable> OutOfScreenTrigger => _outOfScreenTrigger;
 
-        public BallsCollisionHandler CollisionHandler => _collisionHandler;
-        public SessionScore SessionScore => _sessionScore;
-
         public Ball CreateNewBall()
         {
-            var newBall = Object.Instantiate(_ballPrefab, _gameParent);
+            var newBall = _ballFactory.CreateBall(_gameParent);
             newBall.transform.position = _ballCreationPoint;
 
             _currentBalls.Add(newBall);

@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad022949e4935944cba76ad493ec4711, type: 3}
+  m_Name: TestingContentPack
+  m_EditorClassIdentifier: 
+  _wallColor: {r: 0.9594185, g: 1, b: 0.25157225, a: 1}
+  _platformPrefab: {fileID: 793686670983276837, guid: d9ca4f27592b87d41857aee5880289b2, type: 3}
+  _ballFactory: {fileID: 11400000, guid: 94562f64268854e41bf650f14a1871da, type: 2}
+  _backgroundPrefab: {fileID: 5283363022337283399, guid: be87a55f42d91284f83b654e73778680, type: 3}
+  _flyingTextPrefab: {fileID: 6272443622669913550, guid: 3dfb8f2b2c81f2c4faa38b0208d2bf10, type: 3}

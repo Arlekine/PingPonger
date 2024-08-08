@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace PingPonger.Gameplay
 {
-    public class SessionScore : IDisposable
+    public class SessionScore : ISessionService, IDisposable
     {
         private int _currentScore;
         private BallsCollisionHandler _collisionHandler;

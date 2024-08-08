@@ -1,10 +1,13 @@
 using UnityEngine;
 
-public class UI : MonoBehaviour
+namespace View
 {
-    [SerializeField] private MainMenuView _mainMenuView;
-    [SerializeField] private SessionView _sessionView;
+    public class UI : MonoBehaviour
+    {
+        [Header("UI blocks")] [SerializeField] private MainMenuPresenter _mainMenuPresenter;
+        [SerializeField] private SessionPresenter _sessionPresenter;
 
-    public MainMenuView MainMenuView => _mainMenuView;
-    public SessionView SessionView => _sessionView;
+        public MainMenuPresenter MainMenuPresenter => _mainMenuPresenter;
+        public SessionPresenter SessionPresenter => _sessionPresenter;
+    }
 }

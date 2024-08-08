@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-
 public abstract class DataLoader
 {
     private GameData _currentGameData;

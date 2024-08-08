@@ -9,8 +9,8 @@ namespace PingPonger.UI
         private const string ScorePointsFormat = "+{0}";
 
         [SerializeField] private CounterView _scoreView;
-        [SerializeField] private FlyingText _flyingScorePointsPrefab;
         [SerializeField] private RectTransform _flyingTextParent;
+        [SerializeField] private FlyingText _flyingScorePointsPrefab;
 
         private SessionScore _currentSessionScore;
         private Vector2 _scoreViewAnchoredPos;
@@ -22,6 +22,11 @@ namespace PingPonger.UI
 
             _currentSessionScore.GotScore += OnGotScore;
             _scoreView.SetTextWithoutAnimation("0");
+        }
+
+        public void SetFlyingText(FlyingText flyingScorePointsPrefab)
+        {
+            _flyingScorePointsPrefab = flyingScorePointsPrefab;
         }
 
         private void OnGotScore(Vector3 scoreGettingWorldPos, int got, int actualScore)

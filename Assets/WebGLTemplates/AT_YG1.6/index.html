@@ -409,10 +409,10 @@
       // Проверяем устройство
       var isTouchDevice;
 
-      if('ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-        isTouchDevice = true;
+      if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+	      isTouchDevice = true; 
       } else {
-        isTouchDevice = false;
+	      isTouchDevice = false;
       }
 
       #if CUSTOMIZE_CURSOR !== "false"

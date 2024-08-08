@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad022949e4935944cba76ad493ec4711, type: 3}
+  m_Name: DefaultContentPack
+  m_EditorClassIdentifier: 
+  _wallColor: {r: 1, g: 1, b: 1, a: 1}
+  _platformPrefab: {fileID: 793686670983276837, guid: 54e42ef142a6120438d0fab5370ab930, type: 3}
+  _ballFactory: {fileID: 11400000, guid: 9a8752a8da6520343a2ab7a8e88ab323, type: 2}
+  _backgroundPrefab: {fileID: 167895623306383789, guid: 3d1c85f3e01860c46b87cb3452c3ade1, type: 3}
+  _flyingTextPrefab: {fileID: 6272443622669913550, guid: 43c7ac2f70c3eca4491bcee886e112fd, type: 3}

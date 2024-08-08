@@ -47,7 +47,7 @@ PlayerSettings:
   defaultScreenWidthWeb: 11
   defaultScreenHeightWeb: 16
   m_StereoRenderingPath: 0
-  m_ActiveColorSpace: 1
+  m_ActiveColorSpace: 0
   m_SpriteBatchVertexThreshold: 300
   m_MTRendering: 1
   mipStripping: 0
@@ -520,14 +520,14 @@ PlayerSettings:
     BANNER_STATIC_1: 
     BANNER_STATIC_2: 
     CHANGE_BAR_COLOR: 
-    CHANGE_LOADING_SCREEN_BACKGROUND: 
+    CHANGE_LOADING_SCREEN_BACKGROUND: 'background-color: Black;'
     CHANGE_LOGO_IMAGE: 
-    CONFIGURE_SHADOWS: 
+    CONFIGURE_SHADOWS: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
     CONNECT_WEB_AUDIO_PLUGIN_FILES: 
-    CUSTOMIZE_CURSOR: 
+    CUSTOMIZE_CURSOR: false;
     DISABLE_CONSOLE_LOG: 
     ENABLE_CONSOLE: 
-    LOCK_ASPECT_RATIO_ON_DESKTOP: 
+    LOCK_ASPECT_RATIO_ON_DESKTOP: true;
     LOCK_ASPECT_RATIO_ON_MOBILE: 
   mobileMTRendering:
     Android: 1

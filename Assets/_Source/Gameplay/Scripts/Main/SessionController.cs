@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using Lean.Touch;
 using ProgressionSystem;
 using UnityEngine;
@@ -35,7 +34,7 @@ namespace PingPonger.Gameplay
         private CurveProgressProcessor _maxBallsProcessor;
         private CurveProgressProcessor _ballsSpawnChancesProcessor;
 
-        public Action SessionFinished;
+        public Action Lost;
 
         public void StartNewSession(SessionContext context)
         {
@@ -58,6 +57,7 @@ namespace PingPonger.Gameplay
         {
             _timerProgress.Continue();
             _currentContext.CreateNewBall();
+            _currentContext.CurrentPlatform.Enable();
         }
 
         private void OnBallCreated(Ball ball)
@@ -69,8 +69,9 @@ namespace PingPonger.Gameplay
         {
             if (_currentContext.CurrentBalls.Count == 0)
             {
+                _currentContext.CurrentPlatform.Disable();
                 _timerProgress.Stop();
-                SessionFinished?.Invoke();
+                Lost?.Invoke();
             }
         }
 

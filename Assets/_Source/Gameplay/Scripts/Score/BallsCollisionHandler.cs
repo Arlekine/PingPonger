@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace PingPonger.Gameplay
 {
-    public class BallsCollisionHandler : IDisposable
+    public class BallsCollisionHandler : ISessionService, IDisposable
     {
         private SessionContext _context;
         private readonly Dictionary<Ball, Ball> _doubleCollisions = new Dictionary<Ball, Ball>();

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace PingPonger.Gameplay
 { 
-    public class GameplayController : IGameplayController
+    public class GameplayController : MonoBehaviour, IGameplayController
     {
         [SerializeField] private GameContextInstaller _gameContextInstaller;
         [SerializeField] private SessionController _sessionController;
@@ -18,29 +18,54 @@ namespace PingPonger.Gameplay
         private SessionScore _score;
         private BallsCollisionHandler _collisionHandler;
 
+        public event Action<IServiceLocator<ISessionService>> NewSessionStarted;
+        public event Action<IServiceLocator<ISessionService>> SessionContinued;
+        public event Action Lost;
         public event Action<int> SessionCompleted;
 
-        public SessionContext StartNewSession()
+        public void StartNewSession()
         {
+            var sessionServiceLocator = new SessionServiceLocator();
+
             _currentContext = _gameContextInstaller.GetNewGameContext();
             _collisionHandler = new BallsCollisionHandler(_currentContext);
 
             _score = new SessionScore(_collisionHandler, _scoreForSignleCollision, _scoreForDoubleCollision);
 
             _sessionController.StartNewSession(_currentContext);
-            _sessionController.SessionFinished += OnCurrentSessionFinished;
-            return _currentContext;
+            _sessionController.Lost += OnLost;
+
+            sessionServiceLocator.AddService(_currentContext);
+            sessionServiceLocator.AddService(_collisionHandler);
+            sessionServiceLocator.AddService(_score);
+
+            NewSessionStarted?.Invoke(sessionServiceLocator);
         }
 
-        private void OnCurrentSessionFinished()
+        public void ContinueCurrentSession()
         {
-            _sessionController.SessionFinished -= OnCurrentSessionFinished;
+            _sessionController.Continue();
+        }
+
+        public int FinishCurrentSession()
+        {
+            _sessionController.Lost -= OnLost;
+
+            var finalScore = _score.CurrentScore;
 
             _score.Dispose();
             _collisionHandler.Dispose();
 
             _currentContext.Clear();
             _currentContext.Dispose();
+
+            SessionCompleted?.Invoke(finalScore);
+            return finalScore;
+        }
+
+        private void OnLost()
+        {
+            Lost?.Invoke();
         }
     }
 }

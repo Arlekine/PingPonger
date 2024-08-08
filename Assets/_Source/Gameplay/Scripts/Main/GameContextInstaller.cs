@@ -17,18 +17,23 @@ namespace PingPonger.Gameplay
         [Space]
         [SerializeField] private TypedTrigger<IDestractable> _outOfScreenDestractor;
 
-        [Space]
-        [SerializeField] private Ball _ballPrefab;
-        [SerializeField] private Platform _platformPrefab;
+        private BallFactory _currentBallFactory;
+        private Platform _currentPlatformPrefab;
+
+        public void SetConstructionElements(Platform platformPrefab, BallFactory ballFactory)
+        {
+            _currentBallFactory = ballFactory;
+            _currentPlatformPrefab = platformPrefab;
+        }
 
         [EditorButton]
-        public SessionContext GetNewGameContext(SessionScore score, BallsCollisionHandler collisionHandler)
+        public SessionContext GetNewGameContext()
         {
             var borders = new PlatfromBorders(_platfromPoint.position.y, 
                 _platfromLeftMoveBorder.position.x,
                 _platfromRightMoveBorder.position.x);
 
-            return new SessionContext(_ballPrefab, _platformPrefab, borders, _outOfScreenDestractor, _ballSpawnPoint.position, _gameParent, _camera, _input, collisionHandler, score);
+            return new SessionContext(_currentBallFactory, _currentPlatformPrefab, borders, _outOfScreenDestractor, _ballSpawnPoint.position, _gameParent, _camera, _input);
         }
     }
 }

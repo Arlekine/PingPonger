@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f99007558b27684c83f7582726659d9, type: 3}
+  m_Name: DefaultBallFactory
+  m_EditorClassIdentifier: 
+  _ballPrefab: {fileID: 50220659674043072, guid: 06e69965fde478a4d85882dd4aa4ca30, type: 3}
